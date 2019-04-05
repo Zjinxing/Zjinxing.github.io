@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS的继承 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、原型链继承基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法，实现的本质是重写原型对象，代之以一个新类型的实例。 看一下下面的简单代码 function Animal() {  this.health = “good”;};Animal.prototype.getHealth = function () {  console.log(`The animal is in ${this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS的继承">
+<meta property="og:url" content="http://www.zhaovenus.com/2018/08/04/js-e7-9a-84-e7-bb-a7-e6-89-bf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、原型链继承基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法，实现的本质是重写原型对象，代之以一个新类型的实例。 看一下下面的简单代码 function Animal() {  this.health = “good”;};Animal.prototype.getHealth = function () {  console.log(`The animal is in ${this">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-11T13:29:27.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS的继承">
+<meta name="twitter:description" content="1、原型链继承基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法，实现的本质是重写原型对象，代之以一个新类型的实例。 看一下下面的简单代码 function Animal() {  this.health = “good”;};Animal.prototype.getHealth = function () {  console.log(`The animal is in ${this">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zhaovenus.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-e7-9a-84-e7-bb-a7-e6-89-bf" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/04/js-e7-9a-84-e7-bb-a7-e6-89-bf/" class="article-date">
+  <time datetime="2018-08-04T15:53:20.000Z" itemprop="datePublished">2018-08-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS的继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1、原型链继承"><a href="#1、原型链继承" class="headerlink" title="1、原型链继承"></a>1、原型链继承</h4><p>基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法，实现的本质是重写原型对象，代之以一个新类型的实例。 看一下下面的简单代码</p>
+<p>function Animal() {<br>  this.health = “good”;<br>};<br>Animal.prototype.getHealth = function () {<br>  console.log(`The animal is in ${this.health} health`);<br>}</p>
+<p>function Cat() {};<br>Cat.prototype = new Animal();<br>let cat = new Cat();<br>cat.health; // “good”<br>cat.getHealth(); // The animal is in good health</p>
+<p>这里并没有给Cat添加任何属性和方法，但是修改了Cat的原型，使其指向Animal 的实例，因此Cat就继承了Animal的属性和方法。 在使用原型链继承时，如果原型中包含引用类型值，就会出现问题：</p>
+<p>function Animal() {<br>  this.skills = [“eat”, “sleep”, “sing”];<br>}<br>function Bird() {}<br>Bird.prototype = new Animal();<br>var eagle = new Bird();<br>eagle.skills.push(“fly”);<br>eagle.skills // “eat”, “sleep”, “sing”, “fly”<br>var ostrich = new Bird();<br>ostrich.skills // “eat”, “sleep”, “sing”, “fly”</p>
+<p>Bird通过原型链继承了Animal，也拥有了一个skills属性，当通过Bird创建实例时，所有实例都会共享这一个skills属性，修改任何一个实例的skills属性都将会影响到其他实例，这显然不是我们期望的。</p>
+<h4 id="2、构造函数继承"><a href="#2、构造函数继承" class="headerlink" title="2、构造函数继承"></a>2、构造函数继承</h4><p>基本思想是在子类的构造函数中调用父类构造函数，如下：</p>
+<p>function Animal() {<br>  this.skills = [“eat”, “sleep”, “sing”];<br>}</p>
+<p>function Bird() {<br>  // 实现继承<br>  Animal.call(this);<br>}<br>var eagle = new Bird();<br>eagle.skills.push(“fly”);<br>eagle.skills // “eat”, “sleep”, “sing”, “fly”</p>
+<p>var ostrich = new Bird();<br>ostrich.skills // “eat”, “sleep”, “sing”</p>
+<p>当我们通过子类Bird创建实例时，实际上是调用了父类Animal的constructor，因此每个Bird实例都会有了自己的skills属性。 另外构造函数的另一大优势是可以向父类构造函数传递参数：</p>
+<p>function Animal(class) {<br>  this.skills = [“eat”, “sleep”, “sing”];<br>  this.class = class;<br>}</p>
+<p>function Bird() {<br>  // 实现继承<br>  Animal.call(this, “eagle”);<br>}<br>var eagle = new Bird();<br>eagle.class // “eagle”</p>
+<h4 id="3、组合继承"><a href="#3、组合继承" class="headerlink" title="3、组合继承"></a>3、组合继承</h4><p>组合继承指的是将原型链和借用构造函数的技术组合的一块，从而发挥二者之长的一种继承模式，也是JavaScript中最常用的继承模式：</p>
+<p>function Animal(name) {<br>  this.skills = [“eat”, “sleep”, “sing”];<br>  this.name = name;<br>}</p>
+<p>Animal.prototype.eat = function () {<br>  console.log(`I am ${this.name}, I am eating`);<br>}</p>
+<p>function Bird(name, age) {<br>  // 继承属性<br>  Animal.call(this, name)<br>  this.age = age;<br>}<br>// 继承方法<br>Bird.prototype = new Animal();<br>// 将构造函数重新指向Bird<br>Bird.prototype.constructor = Bird;<br>Bird.prototype.sayAge = function () {<br>  console.log(this.age);<br>}<br>var bird1 = new Bird(“pipi”, 1);<br>var bird2 = new Bird(“qiqi”, 2);<br>bird1.skills.push(“fly”);<br>console.log(bird1.skills); // “eat”, “sleep”, “sing”, “fly”<br>bird1.eat(); // I am pipi, I am eating<br>bird1.sayAge(); // 1</p>
+<p>console.log(bird2.skills); // “eat”, “sleep”, “sing”<br>bird2.eat(); // I am qiqi, I am eating<br>bird2.sayAge(); // 2</p>
+<h4 id="4、原型式继承"><a href="#4、原型式继承" class="headerlink" title="4、原型式继承"></a>4、原型式继承</h4><p>原型继承其本质是对一个已有对象的浅拷贝：</p>
+<p>function object(o) {<br>    function F(){};<br>    F.prototype = o;<br>    return new F();<br>}<br>var animal = {<br>    skills: [“eat”, “sleep”, “sing”],<br>    eat: function() {<br>        console.log(“I am eating”);<br>    }<br>}<br>var bird = object(animal);<br>bird.skills //“eat”, “sleep”, “sing”<br>bird.eat() // I am eating</p>
+<p>object函数以对象o为模板，在函数内部定义一个空构造函数，让其原型对象指向o，返回一个构造函数的实例，这样就有了对象o的所有属性和方法 es5中新增一个函数Object.create()方法规范化了原型式继承</p>
+<p>var bird = Object.create(animal);<br>bird.skills // “eat”, “sleep”, “sing”<br>bird.eat() // I am eating</p>
+<p>需要注意的是此方法实现继承不同实例之间包含的引用类型值会共享，就像原型链继承一样。</p>
+<h4 id="5、寄生式继承"><a href="#5、寄生式继承" class="headerlink" title="5、寄生式继承"></a>5、寄生式继承</h4><p>寄生式继承和原型式继承比较类似：</p>
+<p>function createObj(o) {<br>    var clone = object(o); // 通过调用函数创建一个对象<br>    clone.eat = function() { // 在此对象基础上添加方法或属性<br>        console.log(“I am eating”);<br>    }<br>    return clone; // 返回此对象<br>}<br>var animal = {<br>    skills: [“eat”, “sleep”, “sing”]<br>}<br>var bird = createObj(animal);<br>bird.eat() // I am eating</p>
+<h4 id="6、寄生组合式继承"><a href="#6、寄生组合式继承" class="headerlink" title="6、寄生组合式继承"></a>6、寄生组合式继承</h4><p>寄生组合式继承即通过借用构造函数继承属性，通过原型链方式继承方法：</p>
+<p>function inherit(subType, superType) {<br>  var prototype = object(superType.prototype);<br>  prototype.constructor = subType;<br>  subType.prototype = prototype;<br>}</p>
+<p>object其实就相当于Object.create()，因此还可以写成下面这样：</p>
+<p>function inherit(subType, superType) {<br>  var prototype = Object.create(superType.prototype);<br>  prototype.constructor = subType;<br>  subType.prototype = prototype;<br>}</p>
+<p>在函数内部首先以父类原型为模板创建了一个对象，然后给此对象添加constructor属性，使其指向subType，最后将次对象赋值给子对象subType的原型：</p>
+<p>function inherit(subType, superType) {<br>  var prototype = Object.create(superType.prototype);<br>  prototype.constructor = subType;<br>  subType.prototype = prototype;<br>}</p>
+<p>function Animal(name) {<br>  this.skills = [“eat”, “sleep”, “sing”];<br>  this.name = name;<br>}<br>Animal.prototype.eat = function () {<br>  console.log(`I am ${this.name}, I am eating`);<br>}<br>function Bird(name, age) {<br>  Animal.call(this, name);<br>  this.age = age;<br>}<br>inherit(Bird, Animal)<br>Bird.prototype.sayAge = function() {<br>  console.log(this.age);<br>}<br>let eagle = new Bird(“pipi”, 1);<br>console.log(eagle.skills) // “eat”, “sleep”, “sing”<br>eagle.eat(); //I am pipi, I am eating<br>eagle.sayAge() // 1</p>
+<p><em>注：以上参考与JavaScript高级程序设计（第3版）</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.zhaovenus.com/2018/08/04/js-e7-9a-84-e7-bb-a7-e6-89-bf/" data-id="cju3ohvhb000b5j5146qe46t4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/25/e5-be-ae-e4-bf-a1-e5-b0-8f-e7-a8-8b-e5-ba-8f-e5-88-a4-e6-96-ad-e4-b8-8a-e4-b8-8b-e5-b7-a6-e5-8f-b3-e6-bb-91-e5-8a-a8-e6-96-b9-e5-90-91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          微信小程序判断上下左右滑动方向
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/26/hello-world-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">世界，您好！</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/">js实现快速排序和冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/">elementUI el-table表格列排序的两种方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/08/el-pagination-e7-9a-84-e5-ba-94-e7-94-a8/">el-pagination的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/25/e5-be-ae-e4-bf-a1-e5-b0-8f-e7-a8-8b-e5-ba-8f-e5-88-a4-e6-96-ad-e4-b8-8a-e4-b8-8b-e5-b7-a6-e5-8f-b3-e6-bb-91-e5-8a-a8-e6-96-b9-e5-90-91/">微信小程序判断上下左右滑动方向</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaojinxing<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

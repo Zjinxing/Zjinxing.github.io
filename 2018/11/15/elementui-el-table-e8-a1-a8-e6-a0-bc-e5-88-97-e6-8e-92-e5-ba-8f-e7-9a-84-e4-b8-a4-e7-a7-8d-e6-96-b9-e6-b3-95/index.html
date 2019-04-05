@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>elementUI el-table表格列排序的两种方法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一种sort-method：这个属性接收一个方法作为排序依据，和Array.sort()表现一致。 先看一下纯数字组成的数组的排序： 12345678// 如果升序排序则Array.sort(function(a, b) &amp;#123;  return a - b&amp;#125;)// 如果降序排序则Array.sort(function(a, b) &amp;#123;  return b - a&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elementUI el-table表格列排序的两种方法">
+<meta property="og:url" content="http://www.zhaovenus.com/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一种sort-method：这个属性接收一个方法作为排序依据，和Array.sort()表现一致。 先看一下纯数字组成的数组的排序： 12345678// 如果升序排序则Array.sort(function(a, b) &amp;#123;  return a - b&amp;#125;)// 如果降序排序则Array.sort(function(a, b) &amp;#123;  return b - a&amp;#125">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-24T10:41:15.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elementUI el-table表格列排序的两种方法">
+<meta name="twitter:description" content="第一种sort-method：这个属性接收一个方法作为排序依据，和Array.sort()表现一致。 先看一下纯数字组成的数组的排序： 12345678// 如果升序排序则Array.sort(function(a, b) &amp;#123;  return a - b&amp;#125;)// 如果降序排序则Array.sort(function(a, b) &amp;#123;  return b - a&amp;#125">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zhaovenus.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/" class="article-date">
+  <time datetime="2018-11-15T13:05:24.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      elementUI el-table表格列排序的两种方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一种sort-method：这个属性接收一个方法作为排序依据，和Array.sort()表现一致。 先看一下纯数字组成的数组的排序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果升序排序则</span></span><br><span class="line"><span class="built_in">Array</span>.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果降序排序则</span></span><br><span class="line"><span class="built_in">Array</span>.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b - a</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果是对象组成的数组，需要按照对象的某个key的值进行排序，则可以按照下面的方式来进行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.sort(<span class="function"><span class="keyword">function</span>(<span class="params">obj1, obj2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> val1 = obj1.key</span><br><span class="line">  <span class="keyword">let</span> val2 = obj2.key</span><br><span class="line">  <span class="keyword">return</span> val1 - val2</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>下面是在实例中的应用 HTML部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"tableData"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"selection"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"项目编号"</span> <span class="attr">prop</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"项目名称"</span> <span class="attr">prop</span>=<span class="string">"name"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"到期时间"</span> <span class="attr">:sortable</span>=<span class="string">"true"</span> <span class="attr">:sort-method</span>=<span class="string">"sortByDate"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"赏金"</span> <span class="attr">prop</span>=<span class="string">"price"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"操作"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JS部分</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      tableData: [</span><br><span class="line">        &#123;</span><br><span class="line">          type: <span class="string">'平面设计'</span>,</span><br><span class="line">          id: <span class="string">'477760'</span>,</span><br><span class="line">          name: <span class="string">'logo设计'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1540260459981</span>,    </span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          type: <span class="string">'整站建设'</span>,</span><br><span class="line">          id: <span class="string">'451534'</span>,</span><br><span class="line">          name: <span class="string">'信息网站开发'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1544260459981</span>,  </span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          type: <span class="string">'IOS'</span>,</span><br><span class="line">          id: <span class="string">'789412'</span>,</span><br><span class="line">          name: <span class="string">'信息网站开发'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1543260459981</span>,  </span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          type: <span class="string">'UI设计'</span>,</span><br><span class="line">          id: <span class="string">'564325'</span>,</span><br><span class="line">          name: <span class="string">'信息网站开发'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1541260459981</span>,  </span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          type: <span class="string">'VI设计'</span>,</span><br><span class="line">          id: <span class="string">'458252'</span>,</span><br><span class="line">          name: <span class="string">'VI优化设计'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1545260459981</span>,  </span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          type: <span class="string">'Android'</span>,</span><br><span class="line">          id: <span class="string">'456782'</span>,</span><br><span class="line">          name: <span class="string">'Android开发'</span>,</span><br><span class="line">          price: <span class="number">10000</span>,</span><br><span class="line">          deadline: <span class="number">1544860459981</span>,</span><br><span class="line">          url: <span class="string">'javascript:;'</span>,      </span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  filters: &#123;</span><br><span class="line">    deadline(value) &#123;</span><br><span class="line">      <span class="keyword">let</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()</span><br><span class="line">      <span class="keyword">if</span>(value - now &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'已结束'</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(value)</span><br><span class="line">        <span class="keyword">let</span> Y = date.getFullYear()</span><br><span class="line">        <span class="keyword">let</span> M = date.getMonth() + <span class="number">1</span></span><br><span class="line">        <span class="keyword">let</span> D = date.getDate()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;Y&#125;</span>-<span class="subst">$&#123;M&#125;</span>-<span class="subst">$&#123;D&#125;</span>`</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    sortByDate(obj1, obj2) &#123;</span><br><span class="line">      <span class="keyword">let</span> val1 = obj1.deadline</span><br><span class="line">      <span class="keyword">let</span> val2 = obj2.deadline</span><br><span class="line">      <span class="keyword">return</span> val1 - val2</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方法为sort-by这个属性是指定数据按照哪个属性进行排序，比如上面的例子中如果要按照时间戳来排序可以直接把:sort-method=”sortByDate”换成sort-by=”deadline”就能达到同样的效果了，如果使用了sort-by就不能使用sort-method了，否则不会生效。   值得注意的一点是sort-method是属性不是方法，要写成”:sort-method=’sortfunc’”而不能写成”@sort-method=’sortfunc’”，另外两个排序方法都需要将sortable设为true才能生效</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.zhaovenus.com/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/" data-id="cju3ohvh600045j510a2sjgk7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          js实现快速排序和冒泡排序
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/08/el-pagination-e7-9a-84-e5-ba-94-e7-94-a8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">el-pagination的应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/">js实现快速排序和冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/">elementUI el-table表格列排序的两种方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/08/el-pagination-e7-9a-84-e5-ba-94-e7-94-a8/">el-pagination的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/25/e5-be-ae-e4-bf-a1-e5-b0-8f-e7-a8-8b-e5-ba-8f-e5-88-a4-e6-96-ad-e4-b8-8a-e4-b8-8b-e5-b7-a6-e5-8f-b3-e6-bb-91-e5-8a-a8-e6-96-b9-e5-90-91/">微信小程序判断上下左右滑动方向</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaojinxing<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

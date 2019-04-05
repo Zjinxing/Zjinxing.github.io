@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>js实现快速排序和冒泡排序 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、冒泡排序原理冒泡排序是对数组进行循环，比较相邻的两个元素的大小，如果前面的比后面的大，则交换两个元素。比如一个数组[4,2,7,3,1,5,6]，第一次比较第0项和第1项，4和2，4比2大，则4和2交换位置，第二次比较第1项和第2项，此时第2项已经是4了，4和7比较，7大，则位置不变，第三次比较第2项和第3项，7比3大，则7和3交换位置……这样第一次循环结束后最大的值就排到了最后一项，也就是7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js实现快速排序和冒泡排序">
+<meta property="og:url" content="http://www.zhaovenus.com/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、冒泡排序原理冒泡排序是对数组进行循环，比较相邻的两个元素的大小，如果前面的比后面的大，则交换两个元素。比如一个数组[4,2,7,3,1,5,6]，第一次比较第0项和第1项，4和2，4比2大，则4和2交换位置，第二次比较第1项和第2项，此时第2项已经是4了，4和7比较，7大，则位置不变，第三次比较第2项和第3项，7比3大，则7和3交换位置……这样第一次循环结束后最大的值就排到了最后一项，也就是7">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-24T10:45:51.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js实现快速排序和冒泡排序">
+<meta name="twitter:description" content="1、冒泡排序原理冒泡排序是对数组进行循环，比较相邻的两个元素的大小，如果前面的比后面的大，则交换两个元素。比如一个数组[4,2,7,3,1,5,6]，第一次比较第0项和第1项，4和2，4比2大，则4和2交换位置，第二次比较第1项和第2项，此时第2项已经是4了，4和7比较，7大，则位置不变，第三次比较第2项和第3项，7比3大，则7和3交换位置……这样第一次循环结束后最大的值就排到了最后一项，也就是7">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.zhaovenus.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/" class="article-date">
+  <time datetime="2018-12-13T16:49:49.000Z" itemprop="datePublished">2018-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js实现快速排序和冒泡排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、冒泡排序"><a href="#1、冒泡排序" class="headerlink" title="1、冒泡排序"></a>1、冒泡排序</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>冒泡排序是对数组进行循环，比较相邻的两个元素的大小，如果前面的比后面的大，则交换两个元素。比如一个数组[4,2,7,3,1,5,6]，第一次比较第0项和第1项，4和2，4比2大，则4和2交换位置，第二次比较第1项和第2项，此时第2项已经是4了，4和7比较，7大，则位置不变，第三次比较第2项和第3项，7比3大，则7和3交换位置……这样第一次循环结束后最大的值就排到了最后一项，也就是7排到了最后。然后开始第二次循环，第二次循环时就不用比较第5项和第6项了，因为上次循环结束后，第6项已经是最大的7了，第二次循环比第一次循环的比较次数就少了一次。这样循环6次之后就完成了排序。写成js就是下面这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; arr.length - i <span class="number">-1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">let</span> temp = arr[j]</span><br><span class="line">                arr[j] = arr[j + <span class="number">1</span>]</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line">bubbleSort(array) <span class="comment">// [1,2,3,4,5,6,7]</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、快速排序"><a href="#2、快速排序" class="headerlink" title="2、快速排序"></a>2、快速排序</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>快速排序和二分查找原理比较类似。快速排序使用了递归的方法，首先判断数组长度，如果小于等于1则直接返回数组。否则先从数组中选出一个元素，这个数字可以是数组中的任意一个元素，然后声明两个空数组，比较数组中的每一项和选出的元素大小，比选出元素小的放如一个数组，比选出元素小的放入另一个数组，这样数组就被分成了3部分，较小的一部分，被选中元素和较大的一部分，然后再对两个数组进行同样的操作。比如[4, 2, 7, 3, 1, 5, 6]，假设选中的数字是4，则数组就被分成了[2,3,1]、4、[7,5,6]，直到被分割的数组长度都等1的时候也就完成了排序。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length) <span class="comment">// 生成一个随机数，范围0到arr.length-1</span></span><br><span class="line">    <span class="keyword">let</span> m = arr.splice(mIndex, <span class="number">1</span>) <span class="comment">// 取出数组中的此项</span></span><br><span class="line">    <span class="keyword">let</span> left = []</span><br><span class="line">    <span class="keyword">let</span> right = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]  &lt; m) &#123;</span><br><span class="line">            left.push(arr[i])</span><br><span class="line">        &#125; <span class="keyword">else</span>  &#123;</span><br><span class="line">            right.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> quickSort(left).concat(m, quickSort(right))</span><br><span class="line">&#125;</span><br><span class="line">quickSort(array) <span class="comment">// [1,2,3,4,5,6,7]</span></span><br></pre></td></tr></table></figure>
+<h2 id="另外再加一个和排序无关的"><a href="#另外再加一个和排序无关的" class="headerlink" title="另外再加一个和排序无关的"></a>另外再加一个和排序无关的</h2><p>最近遇到的一个面试题，要求生成一个6位数密码，要求有5个数字，一个小写字母。这个需要用到ascii码转字符，当时没想到ascii转字符的方法，就写了一个包含所有小写字母的数组……</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">password</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr = [] <span class="comment">// 声明一个空数组，用于存放密码</span></span><br><span class="line">    <span class="keyword">let</span> num = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span>) <span class="comment">// 生成一个0到9的随机数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 先存入5个数字进去</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        arr.push(num())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> ascii = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">26</span>) + <span class="number">97</span> <span class="comment">// 生成一个97到122的随机数（a-z的ascii码）</span></span><br><span class="line">    <span class="keyword">let</span> char = <span class="built_in">String</span>.fromCharCode(ascii) <span class="comment">// 将ascii码转为字符</span></span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length)</span><br><span class="line">    arr.splice(index, <span class="number">0</span>, char) <span class="comment">// 将小写字母随机选一个位置插入到数组中</span></span><br><span class="line">    <span class="keyword">return</span> arr.join(<span class="string">""</span>) <span class="comment">// 将数组转为字符串并返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.zhaovenus.com/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/" data-id="cju3ohvha00085j51nkp99ewu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/10/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">elementUI el-table表格列排序的两种方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/14/js-e5-ae-9e-e7-8e-b0-e5-bf-ab-e9-80-9f-e6-8e-92-e5-ba-8f-e5-92-8c-e5-86-92-e6-b3-a1-e6-8e-92-e5-ba-8f/">js实现快速排序和冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/elementui-el-table-e8-a1-a8-e6-a0-bc-e5-88-97-e6-8e-92-e5-ba-8f-e7-9a-84-e4-b8-a4-e7-a7-8d-e6-96-b9-e6-b3-95/">elementUI el-table表格列排序的两种方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/08/el-pagination-e7-9a-84-e5-ba-94-e7-94-a8/">el-pagination的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/25/e5-be-ae-e4-bf-a1-e5-b0-8f-e7-a8-8b-e5-ba-8f-e5-88-a4-e6-96-ad-e4-b8-8a-e4-b8-8b-e5-b7-a6-e5-8f-b3-e6-bb-91-e5-8a-a8-e6-96-b9-e5-90-91/">微信小程序判断上下左右滑动方向</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Zhaojinxing<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
