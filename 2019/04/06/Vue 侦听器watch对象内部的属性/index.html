@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="最近在看微信小程序开发，发现小程序本身提供的好像没有左滑，右滑，上滑，下滑等事件，但是需要用的时候也可以简单的实现，只需要通过touchstart和touchend配合就可以了。下面是简单的代码实现 1&amp;lt;view class=&quot;container&quot; bindtouchstart=&apos;swipeStart&apos; bindtouchend=&apos;swipeEnd&apos;&amp;gt;&amp;lt;/view&amp;gt; 123">
+  <meta name="description" content="vue侦听器watch当需要在某个数据发生变化时执行某个操作的时候，vue中的watch是最合适的。 在需要监听一个对象时，如果要侦听到对象内部的属性则需要在选项的参数中指定 deep: true，如以下代码： 12345&amp;lt;div id=&quot;watch&quot;&amp;gt;  &amp;lt;span&amp;gt;watch 属性侦听对象内部&amp;lt;/span&amp;gt; &amp;lt;br&amp;gt;  obj.a的值：&amp;lt;i">
+<meta name="keywords" content="JavaScript,vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信小程序判断上下左右滑动方向">
-<meta property="og:url" content="http://blog.zhjx.xyz/2018/08/25/微信小程序判断滑动方向/index.html">
+<meta property="og:title" content="侦听器watch对象内部的属性">
+<meta property="og:url" content="http://blog.zhjx.xyz/2019/04/06/Vue 侦听器watch对象内部的属性/index.html">
 <meta property="og:site_name" content="赵金星">
-<meta property="og:description" content="最近在看微信小程序开发，发现小程序本身提供的好像没有左滑，右滑，上滑，下滑等事件，但是需要用的时候也可以简单的实现，只需要通过touchstart和touchend配合就可以了。下面是简单的代码实现 1&amp;lt;view class=&quot;container&quot; bindtouchstart=&apos;swipeStart&apos; bindtouchend=&apos;swipeEnd&apos;&amp;gt;&amp;lt;/view&amp;gt; 123">
+<meta property="og:description" content="vue侦听器watch当需要在某个数据发生变化时执行某个操作的时候，vue中的watch是最合适的。 在需要监听一个对象时，如果要侦听到对象内部的属性则需要在选项的参数中指定 deep: true，如以下代码： 12345&amp;lt;div id=&quot;watch&quot;&amp;gt;  &amp;lt;span&amp;gt;watch 属性侦听对象内部&amp;lt;/span&amp;gt; &amp;lt;br&amp;gt;  obj.a的值：&amp;lt;i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-11T14:13:57.780Z">
+<meta property="og:updated_time" content="2019-04-06T04:42:32.528Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信小程序判断上下左右滑动方向">
-<meta name="twitter:description" content="最近在看微信小程序开发，发现小程序本身提供的好像没有左滑，右滑，上滑，下滑等事件，但是需要用的时候也可以简单的实现，只需要通过touchstart和touchend配合就可以了。下面是简单的代码实现 1&amp;lt;view class=&quot;container&quot; bindtouchstart=&apos;swipeStart&apos; bindtouchend=&apos;swipeEnd&apos;&amp;gt;&amp;lt;/view&amp;gt; 123">
+<meta name="twitter:title" content="侦听器watch对象内部的属性">
+<meta name="twitter:description" content="vue侦听器watch当需要在某个数据发生变化时执行某个操作的时候，vue中的watch是最合适的。 在需要监听一个对象时，如果要侦听到对象内部的属性则需要在选项的参数中指定 deep: true，如以下代码： 12345&amp;lt;div id=&quot;watch&quot;&amp;gt;  &amp;lt;span&amp;gt;watch 属性侦听对象内部&amp;lt;/span&amp;gt; &amp;lt;br&amp;gt;  obj.a的值：&amp;lt;i">
 
 
 
@@ -114,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://blog.zhjx.xyz/2018/08/25/微信小程序判断滑动方向/">
+  <link rel="canonical" href="http://blog.zhjx.xyz/2019/04/06/Vue 侦听器watch对象内部的属性/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>微信小程序判断上下左右滑动方向 | 赵金星</title>
+  <title>侦听器watch对象内部的属性 | 赵金星</title>
   
 
 
@@ -310,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zhjx.xyz/2018/08/25/微信小程序判断滑动方向/">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhjx.xyz/2019/04/06/Vue 侦听器watch对象内部的属性/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaojinxing">
@@ -327,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微信小程序判断上下左右滑动方向
+          <h1 class="post-title" itemprop="name headline">侦听器watch对象内部的属性
 
               
             
@@ -353,46 +354,16 @@
                 
               
 
-              <time title="Created: 2018-08-25 10:57:17" itemprop="dateCreated datePublished" datetime="2018-08-25T10:57:17+08:00">2018-08-25</time>
+              <time title="Created: 2019-04-06 12:00:39 / Modified: 12:42:32" itemprop="dateCreated datePublished" datetime="2019-04-06T12:00:39+08:00">2019-04-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 22:13:57" itemprop="dateModified" datetime="2019-02-11T22:13:57+08:00">2019-02-11</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -406,8 +377,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2018/08/25/微信小程序判断滑动方向/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/25/微信小程序判断滑动方向/" itemprop="commentCount"></span>
+                <a href="/2019/04/06/Vue 侦听器watch对象内部的属性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/06/Vue 侦听器watch对象内部的属性/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -435,10 +406,13 @@
       
 
       
-        <p>最近在看微信小程序开发，发现小程序本身提供的好像没有左滑，右滑，上滑，下滑等事件，但是需要用的时候也可以简单的实现，只需要通过touchstart和touchend配合就可以了。下面是简单的代码实现</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container"</span> <span class="attr">bindtouchstart</span>=<span class="string">'swipeStart'</span> <span class="attr">bindtouchend</span>=<span class="string">'swipeEnd'</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">page(&#123;</span><br><span class="line">  swipeStart: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data.startX = e.changedTouches\[<span class="number">0</span>\].pageX</span><br><span class="line">    <span class="keyword">this</span>.data.startY = e.changedTouches\[<span class="number">0</span>\].pageY</span><br><span class="line">  &#125;, </span><br><span class="line">  swipeEnd: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e)</span><br><span class="line">    <span class="keyword">this</span>.data.endX = e.changedTouches\[<span class="number">0</span>\].pageX</span><br><span class="line">    <span class="keyword">this</span>.data.endY = e.changedTouches\[<span class="number">0</span>\].pageY</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> dX = <span class="keyword">this</span>.data.endX - <span class="keyword">this</span>.data.startX</span><br><span class="line">    <span class="keyword">let</span> dY = <span class="keyword">this</span>.data.endY - <span class="keyword">this</span>.data.startY</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(dX) &gt; <span class="built_in">Math</span>.abs(dY)) &#123;</span><br><span class="line">      <span class="keyword">if</span>(dX &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"向右滑动了"</span>)</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"向左滑动"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(dY &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"向下滑动"</span>)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"向上滑动"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>touchstart和touchend事件会接受一个event参数，event内有一个changedTouches数组，里边保存着事件触发时的坐标，通过计算touchend时的坐标和touchstart时的坐标就可以很容易的判断出滑动的方向了</p>
+        <h3 id="vue侦听器watch"><a href="#vue侦听器watch" class="headerlink" title="vue侦听器watch"></a>vue侦听器watch</h3><p>当需要在某个数据发生变化时执行某个操作的时候，vue中的watch是最合适的。</p>
+<p>在需要监听一个对象时，如果要侦听到对象内部的属性则需要在选项的参数中指定 <code>deep: true</code>，如以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watch"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>watch 属性侦听对象内部<span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  obj.a的值：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"obj.a"</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  obj.innerObj.b的值：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"obj.innerObj.b"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#watch'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="string">'string'</span>,</span><br><span class="line">    b: <span class="number">0</span>,</span><br><span class="line">    obj: &#123;</span><br><span class="line">      a: <span class="number">1</span>,</span><br><span class="line">      innerObj: &#123;</span><br><span class="line">        b: <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'obj is changed'</span>)</span><br><span class="line">      &#125;,</span><br><span class="line">      deep: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'obj.a'</span>: &#123;</span><br><span class="line">      handler: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`now a is <span class="subst">$&#123;<span class="keyword">this</span>.obj.a&#125;</span>`</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`immediate value: <span class="subst">$&#123;value&#125;</span>`</span>)</span><br><span class="line">      &#125;,</span><br><span class="line">      immediate: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用deep属性时，obj内部的值变化也将被侦听到，如果想要侦听对象内部的某个特定值得变化还可以直接写出对象的属性，如<code>obj.a</code>，对象内部handler为回调函数。</p>
+<p>另一个属性<code>immediate</code>属性设置为true时，回调函数将会在值绑定时立即执行，回调参数为当前绑定值</p>
+<p><a href="https://codepen.io/zjinxing/pen/bJeYPg?editors=1011" target="_blank" rel="noopener">codepen预览地址</a></p>
 
       
     </div>
@@ -460,6 +434,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
 
       
       
@@ -469,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/04/js的继承/" rel="next" title="JS的继承">
-                <i class="fa fa-chevron-left"></i> JS的继承
+              <a href="/2019/04/06/js-实现图片的懒加载/" rel="next" title="js 实现图片的懒加载">
+                <i class="fa fa-chevron-left"></i> js 实现图片的懒加载
               </a>
             
           </div>
@@ -478,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/08/el-pagination分页/" rel="prev" title="el-pagination的应用">
-                el-pagination的应用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,8 +510,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -626,6 +613,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue侦听器watch"><span class="nav-number">1.</span> <span class="nav-text">vue侦听器watch</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -787,9 +791,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://blog.zhjx.xyz/2018/08/25/微信小程序判断滑动方向/";
-    this.page.identifier = "2018/08/25/微信小程序判断滑动方向/";
-    this.page.title = '微信小程序判断上下左右滑动方向';
+    this.page.url = "http://blog.zhjx.xyz/2019/04/06/Vue 侦听器watch对象内部的属性/";
+    this.page.identifier = "2019/04/06/Vue 侦听器watch对象内部的属性/";
+    this.page.title = '侦听器watch对象内部的属性';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
